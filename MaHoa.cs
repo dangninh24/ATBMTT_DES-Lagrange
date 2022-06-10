@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -76,19 +77,19 @@ namespace MaHoaDES
             {
                 try
                 {
-                    ChiaSeBiMat.Instance.KhoaChiaSe = int.Parse(txtKhoaChiaSe.Text.ToString());
-                    ChiaSeBiMat.Instance.ThanhVienGiuKhoa = int.Parse(txtSoThanhVienGiuKhoa.Text.ToString());
-                    ChiaSeBiMat.Instance.ThanhVienMoKhoa = int.Parse(txtSoThanhVienMoKhoa.Text.ToString());
+                    ChiaSeBiMat.Instance.KhoaChiaSe = BigInteger.Parse(txtKhoaChiaSe.Text.ToString());
+                    ChiaSeBiMat.Instance.ThanhVienGiuKhoa = BigInteger.Parse(txtSoThanhVienGiuKhoa.Text.ToString());
+                    ChiaSeBiMat.Instance.ThanhVienMoKhoa = BigInteger.Parse(txtSoThanhVienMoKhoa.Text.ToString());
                     if (ChiaSeBiMat.Instance.ThanhVienGiuKhoa < ChiaSeBiMat.Instance.ThanhVienMoKhoa)
                     {
                         MessageBox.Show("Số thành viên có thể mở khóa phải nhỏ hơn số thành viên giữ khóa.", "Thông báo");
                     }
-                    else if (kiemTraNguyenTo(int.Parse(txtGiaTriP.Text.ToString())))
+                    else if (kiemTraNguyenTo(BigInteger.Parse(txtGiaTriP.Text.ToString())))
                     {
-                        ChiaSeBiMat.Instance.NguyenToP = int.Parse(txtGiaTriP.Text.ToString());
-                        List<int> biMat = new List<int>();
+                        ChiaSeBiMat.Instance.NguyenToP = BigInteger.Parse(txtGiaTriP.Text.ToString());
+                        List<BigInteger> biMat = new List<BigInteger>();
 
-                        for (int i = 0; i < ChiaSeBiMat.Instance.ThanhVienMoKhoa - 1; i++)
+                        for (BigInteger i = 0; i < ChiaSeBiMat.Instance.ThanhVienMoKhoa - 1; i++)
                         {
                             Random random = new Random();
                             biMat.Add(random.Next(1, 10));
@@ -97,7 +98,7 @@ namespace MaHoaDES
                         ChiaSeBiMat.Instance.BiMat = biMat;
 
                         List<ThanhVien> thanhVien = new List<ThanhVien>();
-                        for (int i = 0; i < ChiaSeBiMat.Instance.ThanhVienGiuKhoa; i++)
+                        for (BigInteger i = 0; i < ChiaSeBiMat.Instance.ThanhVienGiuKhoa; i++)
                         {
                             ThanhVien TV = new ThanhVien();
                             TV.Xi = i + 1;
@@ -137,24 +138,24 @@ namespace MaHoaDES
             }
         }
 
-        private int traoPi(int xi)
+        private BigInteger traoPi(BigInteger xi)
         {
-            int Pi = 0;
-            int i = 1;
-            foreach (int bimat in ChiaSeBiMat.Instance.BiMat)
+            BigInteger Pi = 0;
+            BigInteger i = 1;
+            foreach (BigInteger bimat in ChiaSeBiMat.Instance.BiMat)
             {
-                int tinh = (int)Math.Pow(xi, (double)(i));
+                BigInteger tinh = (BigInteger)Math.Pow((double)xi, (double)(i));
                 Pi += bimat * tinh;
                 i++;
             }
             return Pi + ChiaSeBiMat.Instance.KhoaChiaSe;
         }
 
-        private bool kiemTraNguyenTo(int so)
+        private bool kiemTraNguyenTo(BigInteger so)
         {
             if (so > 1)
             {
-                for (int i = 2; i <= Math.Sqrt(so); i++)
+                for (int i = 2; i <= Math.Sqrt((double)so); i++)
                 {
                     if (so % i == 0)
                     {
@@ -173,7 +174,7 @@ namespace MaHoaDES
         {
             if (e.Item.Checked == true)
             {
-                int i = 0;
+                BigInteger i = 0;
                 foreach (ThanhVien thanhvien in ChiaSeBiMat.Instance.ThanhVien)
                 {
                     if (e.Item.Index == i)
@@ -186,7 +187,7 @@ namespace MaHoaDES
             }
             else
             {
-                int i = 0;
+                BigInteger i = 0;
                 foreach (ThanhVien thanhvien in ChiaSeBiMat.Instance.ThanhVien)
                 {
                     if (e.Item.Index == i)

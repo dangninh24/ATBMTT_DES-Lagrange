@@ -34,6 +34,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbThongBao = new System.Windows.Forms.Label();
             this.lstvThanhVienMoKhoa = new System.Windows.Forms.ListView();
+            this.luachon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.XiNew = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PiNew = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnKhoiPhucKhoa = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.luachon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -98,9 +98,9 @@
             this.groupBox2.Controls.Add(this.lstvThanhVienMoKhoa);
             this.groupBox2.Controls.Add(this.btnKhoiPhucKhoa);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox2.Location = new System.Drawing.Point(517, 45);
+            this.groupBox2.Location = new System.Drawing.Point(432, 45);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(477, 522);
+            this.groupBox2.Size = new System.Drawing.Size(475, 522);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ghép khóa";
@@ -132,20 +132,24 @@
             this.lstvThanhVienMoKhoa.View = System.Windows.Forms.View.Details;
             this.lstvThanhVienMoKhoa.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lstvThanhVienMoKhoa_ItemChecked);
             // 
+            // luachon
+            // 
+            this.luachon.Text = "Lựa chọn";
+            this.luachon.Width = 70;
+            // 
             // XiNew
             // 
             this.XiNew.Text = "Xi";
-            this.XiNew.Width = 180;
+            this.XiNew.Width = 200;
             // 
             // PiNew
             // 
-            this.PiNew.DisplayIndex = 2;
             this.PiNew.Text = "Pi";
-            this.PiNew.Width = 180;
+            this.PiNew.Width = 200;
             // 
             // btnKhoiPhucKhoa
             // 
-            this.btnKhoiPhucKhoa.Location = new System.Drawing.Point(187, 477);
+            this.btnKhoiPhucKhoa.Location = new System.Drawing.Point(183, 493);
             this.btnKhoiPhucKhoa.Name = "btnKhoiPhucKhoa";
             this.btnKhoiPhucKhoa.Size = new System.Drawing.Size(113, 23);
             this.btnKhoiPhucKhoa.TabIndex = 0;
@@ -179,7 +183,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.Location = new System.Drawing.Point(6, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(505, 522);
+            this.groupBox1.Size = new System.Drawing.Size(420, 522);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chìa khóa";
@@ -194,7 +198,7 @@
             this.lstvThanhVien.HideSelection = false;
             this.lstvThanhVien.Location = new System.Drawing.Point(6, 254);
             this.lstvThanhVien.Name = "lstvThanhVien";
-            this.lstvThanhVien.Size = new System.Drawing.Size(493, 262);
+            this.lstvThanhVien.Size = new System.Drawing.Size(407, 262);
             this.lstvThanhVien.TabIndex = 10;
             this.lstvThanhVien.UseCompatibleStateImageBehavior = false;
             this.lstvThanhVien.View = System.Windows.Forms.View.Details;
@@ -202,12 +206,12 @@
             // Xi
             // 
             this.Xi.Text = "Xi";
-            this.Xi.Width = 246;
+            this.Xi.Width = 200;
             // 
             // Pi
             // 
             this.Pi.Text = "Pi";
-            this.Pi.Width = 246;
+            this.Pi.Width = 200;
             // 
             // btnNhapLai
             // 
@@ -231,28 +235,28 @@
             // 
             // txtGiaTriP
             // 
-            this.txtGiaTriP.Location = new System.Drawing.Point(297, 145);
+            this.txtGiaTriP.Location = new System.Drawing.Point(257, 145);
             this.txtGiaTriP.Name = "txtGiaTriP";
             this.txtGiaTriP.Size = new System.Drawing.Size(147, 22);
             this.txtGiaTriP.TabIndex = 7;
             // 
             // txtSoThanhVienMoKhoa
             // 
-            this.txtSoThanhVienMoKhoa.Location = new System.Drawing.Point(297, 112);
+            this.txtSoThanhVienMoKhoa.Location = new System.Drawing.Point(257, 112);
             this.txtSoThanhVienMoKhoa.Name = "txtSoThanhVienMoKhoa";
             this.txtSoThanhVienMoKhoa.Size = new System.Drawing.Size(147, 22);
             this.txtSoThanhVienMoKhoa.TabIndex = 6;
             // 
             // txtSoThanhVienGiuKhoa
             // 
-            this.txtSoThanhVienGiuKhoa.Location = new System.Drawing.Point(297, 79);
+            this.txtSoThanhVienGiuKhoa.Location = new System.Drawing.Point(257, 79);
             this.txtSoThanhVienGiuKhoa.Name = "txtSoThanhVienGiuKhoa";
             this.txtSoThanhVienGiuKhoa.Size = new System.Drawing.Size(147, 22);
             this.txtSoThanhVienGiuKhoa.TabIndex = 5;
             // 
             // txtKhoaChiaSe
             // 
-            this.txtKhoaChiaSe.Location = new System.Drawing.Point(297, 45);
+            this.txtKhoaChiaSe.Location = new System.Drawing.Point(257, 45);
             this.txtKhoaChiaSe.Name = "txtKhoaChiaSe";
             this.txtKhoaChiaSe.Size = new System.Drawing.Size(147, 22);
             this.txtKhoaChiaSe.TabIndex = 4;
@@ -297,16 +301,11 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Khóa cần chia sẻ";
             // 
-            // luachon
-            // 
-            this.luachon.Text = "Lựa chọn";
-            this.luachon.Width = 100;
-            // 
             // MaHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 623);
+            this.ClientSize = new System.Drawing.Size(936, 616);
             this.Controls.Add(this.tabControl1);
             this.Name = "MaHoa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

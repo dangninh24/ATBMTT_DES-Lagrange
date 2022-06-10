@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,19 +9,19 @@ namespace MaHoaDES
 {
     public class ChiaSeBiMat
     {
-        private int khoaChiaSe;
-        private int nguyenToP;
-        private int thanhVienGiuKhoa;
-        private int thanhVienMoKhoa;
+        private BigInteger khoaChiaSe;
+        private BigInteger nguyenToP;
+        private BigInteger thanhVienGiuKhoa;
+        private BigInteger thanhVienMoKhoa;
         private List<ThanhVien> thanhVien;
-        private List<int> biMat;
+        private List<BigInteger> biMat;
         private static ChiaSeBiMat instance;
-        public int ThanhVienMoKhoa { get => thanhVienMoKhoa; set => thanhVienMoKhoa = value; }
-        public int ThanhVienGiuKhoa { get => thanhVienGiuKhoa; set => thanhVienGiuKhoa = value; }
-        public int NguyenToP { get => nguyenToP; set => nguyenToP = value; }
-        public int KhoaChiaSe { get => khoaChiaSe; set => khoaChiaSe = value; }
+        public BigInteger ThanhVienMoKhoa { get => thanhVienMoKhoa; set => thanhVienMoKhoa = value; }
+        public BigInteger ThanhVienGiuKhoa { get => thanhVienGiuKhoa; set => thanhVienGiuKhoa = value; }
+        public BigInteger NguyenToP { get => nguyenToP; set => nguyenToP = value; }
+        public BigInteger KhoaChiaSe { get => khoaChiaSe; set => khoaChiaSe = value; }
         public List<ThanhVien> ThanhVien { get => thanhVien; set => thanhVien = value; }
-        public List<int> BiMat { get => biMat; set => biMat = value; }
+        public List<BigInteger> BiMat { get => biMat; set => biMat = value; }
         public static ChiaSeBiMat Instance { 
             get
             {
@@ -34,7 +35,7 @@ namespace MaHoaDES
         }
 
         public ChiaSeBiMat() { }
-        public ChiaSeBiMat(int khoaChiaSe, int nguyenToP, int thanhVienGiuKhoa, int thanhVienMoKhoa, List<ThanhVien> thanhVien)
+        public ChiaSeBiMat(BigInteger khoaChiaSe, BigInteger nguyenToP, BigInteger thanhVienGiuKhoa, BigInteger thanhVienMoKhoa, List<ThanhVien> thanhVien)
         {
             KhoaChiaSe = khoaChiaSe;
             NguyenToP = nguyenToP;
