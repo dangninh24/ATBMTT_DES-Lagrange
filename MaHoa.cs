@@ -199,5 +199,23 @@ namespace MaHoaDES
                 }
             }
         }
+
+        private void btnMaHoa_Click(object sender, EventArgs e)
+        {
+            string maHoa = txtVanBanMaHoa.Text;
+
+            if (maHoa.Equals(""))
+            {
+                MessageBox.Show("Văn bản không được để trống. ", "Thông báo");
+            } else
+            {
+                txtMaHoa.Text = maHoa;
+            }
+        }
+
+        private void btnGiaiMa_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
