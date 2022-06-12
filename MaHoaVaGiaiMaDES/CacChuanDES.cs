@@ -63,95 +63,94 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
             Box.Add(S_Box8);
         }
 
-        public static MaNhiPhan[] TinhIP(MaNhiPhan chuoiVao) 
+        public static MaNhiPhan[] TinhIP(MaNhiPhan chuoi) 
         {
-            MaNhiPhan ChuoiSauIP = new MaNhiPhan(chuoiVao.DoDaiMaNhiPhan());
-            for (int i = 0; i < chuoiVao.DoDaiMaNhiPhan(); i++)
+            MaNhiPhan SauIP = new MaNhiPhan(chuoi.DoDaiMangMaNhiPhan());
+            for (int i = 0; i < chuoi.DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiSauIP.MangNhiPhan[i] = chuoiVao.MangNhiPhan[IP[i] - 1];
+                SauIP.MangMaNhiPhan[i] = chuoi.MangMaNhiPhan[IP[i] - 1];
             }
-            return ChuoiSauIP.ChiaDoi();
+            return SauIP.Chia();
         }
 
-        public static MaNhiPhan TinhIP_1(MaNhiPhan chuoiTrai, MaNhiPhan chuoiPhai) 
+        public static MaNhiPhan TinhIP_1(MaNhiPhan Trai, MaNhiPhan Phai) 
         {
-            MaNhiPhan ChuoiNoi = chuoiTrai.Cong(chuoiPhai);
-            MaNhiPhan KQ = new MaNhiPhan(ChuoiNoi.DoDaiMaNhiPhan());
-            for (int i = 0; i < ChuoiNoi.DoDaiMaNhiPhan(); i++)
+            MaNhiPhan ChuoiMoi = Trai.Cong(Phai);
+            MaNhiPhan ketQua = new MaNhiPhan(ChuoiMoi.DoDaiMangMaNhiPhan());
+            for (int i = 0; i < ChuoiMoi.DoDaiMangMaNhiPhan(); i++)
             {
-                KQ.MangNhiPhan[i] = ChuoiNoi.MangNhiPhan[IP_1[i] - 1];
+                ketQua.MangMaNhiPhan[i] = ChuoiMoi.MangMaNhiPhan[IP_1[i] - 1];
             }
-            return KQ;
+            return ketQua;
         }
 
-        public static MaNhiPhan[] TinhPC1(MaNhiPhan chuoiVao)
+        public static MaNhiPhan[] TinhPC1(MaNhiPhan chuoi)
         {
-            MaNhiPhan ChuoiSauPC1 = new MaNhiPhan(56);
-            for (int i = 0; i < ChuoiSauPC1.DoDaiMaNhiPhan(); i++)
+            MaNhiPhan SauPC1 = new MaNhiPhan(56);
+            for (int i = 0; i < SauPC1.DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiSauPC1.MangNhiPhan[i] = chuoiVao.MangNhiPhan[PC1[i] - 1];
+                SauPC1.MangMaNhiPhan[i] = chuoi.MangMaNhiPhan[PC1[i] - 1];
             }
-            return ChuoiSauPC1.ChiaDoi();
+            return SauPC1.Chia();
         }
 
-        public static MaNhiPhan TinhPC2(MaNhiPhan chuoiTrai, MaNhiPhan chuoiPhai)
+        public static MaNhiPhan TinhPC2(MaNhiPhan Trai, MaNhiPhan Phai)
         {
-            MaNhiPhan CongChuoiVao = chuoiTrai.Cong(chuoiPhai);
-            MaNhiPhan ChuoiSauPC2 = new MaNhiPhan(48);
+            MaNhiPhan CongChuoi = Trai.Cong(Phai);
+            MaNhiPhan SauPC2 = new MaNhiPhan(48);
 
-            for (int i = 0; i < ChuoiSauPC2.DoDaiMaNhiPhan(); i++)
+            for (int i = 0; i < SauPC2.DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiSauPC2.MangNhiPhan[i] = CongChuoiVao.MangNhiPhan[PC2[i] - 1];
+                SauPC2.MangMaNhiPhan[i] = CongChuoi.MangMaNhiPhan[PC2[i] - 1];
             }
-            return ChuoiSauPC2;
+            return SauPC2;
         }
 
-        public static MaNhiPhan TinhE(MaNhiPhan chuoiVao)
+        public static MaNhiPhan TinhE(MaNhiPhan chuoi)
         {
-            MaNhiPhan chuoiKQ = new MaNhiPhan(48);
-            for (int i = 0; i < chuoiKQ.DoDaiMaNhiPhan(); i++)
+            MaNhiPhan chuoiMoi = new MaNhiPhan(48);
+            for (int i = 0; i < chuoiMoi.DoDaiMangMaNhiPhan(); i++)
             {
-                chuoiKQ.MangNhiPhan[i] = chuoiVao.MangNhiPhan[E[i] - 1];
+                chuoiMoi.MangMaNhiPhan[i] = chuoi.MangMaNhiPhan[E[i] - 1];
             }
-            return chuoiKQ;
+            return chuoiMoi;
 
         }
 
-        public static MaNhiPhan TinhP(MaNhiPhan chuoiVao)
+        public static MaNhiPhan TinhP(MaNhiPhan chuoi)
         {
-            MaNhiPhan chuoiKQ = new MaNhiPhan(32);
-            for (int i = 0; i < chuoiKQ.DoDaiMaNhiPhan(); i++)
+            MaNhiPhan chuoiMoi = new MaNhiPhan(32);
+            for (int i = 0; i < chuoiMoi.DoDaiMangMaNhiPhan(); i++)
             {
-                chuoiKQ.MangNhiPhan[i] = chuoiVao.MangNhiPhan[P[i] - 1];
+                chuoiMoi.MangMaNhiPhan[i] = chuoi.MangMaNhiPhan[P[i] - 1];
             }
-            return chuoiKQ;
+            return chuoiMoi;
 
         }
 
-        public static MaNhiPhan TinhS_Box(MaNhiPhan chuoiVao)
+        public static MaNhiPhan TinhS_Box(MaNhiPhan chuoi)
         {
-            MaNhiPhan chuoiKQ;
-            MaNhiPhan[] ChuoiBiChia = chuoiVao.Chia(8);
-            chuoiKQ = Tinh1S_Box(ChuoiBiChia[0], S_Box1);
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[1], S_Box2));
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[2], S_Box3));
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[3], S_Box4));
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[4], S_Box5));
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[5], S_Box6));
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[6], S_Box7));
-            chuoiKQ = chuoiKQ.Cong(Tinh1S_Box(ChuoiBiChia[7], S_Box8));
-            return chuoiKQ;
+            MaNhiPhan chuoiMoi;
+            MaNhiPhan[] ChuoiBiChia = chuoi.Chia(8);
+            chuoiMoi = Tinh1S_Box(ChuoiBiChia[0], S_Box1);
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[1], S_Box2));
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[2], S_Box3));
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[3], S_Box4));
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[4], S_Box5));
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[5], S_Box6));
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[6], S_Box7));
+            chuoiMoi = chuoiMoi.Cong(Tinh1S_Box(ChuoiBiChia[7], S_Box8));
+            return chuoiMoi;
         }
 
-        private static MaNhiPhan Tinh1S_Box(MaNhiPhan chuoiVao, int[,] S_Box)
+        private static MaNhiPhan Tinh1S_Box(MaNhiPhan chuoi, int[,] S_Box)
         {
-            int[] GiaTriDauVaDuoi = new int[] { chuoiVao.MangNhiPhan[0], chuoiVao.MangNhiPhan[5] };
-            int Hang = MaNhiPhan.ChuyenNhiPhanSangSo(new MaNhiPhan(GiaTriDauVaDuoi));
-            int[] GiaTriGiua = new int[] { chuoiVao.MangNhiPhan[1], chuoiVao.MangNhiPhan[2], chuoiVao.MangNhiPhan[3], chuoiVao.MangNhiPhan[4] };
-            int Cot = MaNhiPhan.ChuyenNhiPhanSangSo(new MaNhiPhan(GiaTriGiua));
+            int[] DauVaDuoi = new int[] { chuoi.MangMaNhiPhan[0], chuoi.MangMaNhiPhan[5] };
+            int Hang = MaNhiPhan.ChuyenNhiPhanSangSo(new MaNhiPhan(DauVaDuoi));
+            int[] Giua = new int[] { chuoi.MangMaNhiPhan[1], chuoi.MangMaNhiPhan[2], chuoi.MangMaNhiPhan[3], chuoi.MangMaNhiPhan[4] };
+            int Cot = MaNhiPhan.ChuyenNhiPhanSangSo(new MaNhiPhan(Giua));
 
-            int GiaTriS_Box = S_Box[Hang, Cot];
-            return (MaNhiPhan.ChuyenSoSangNhiPhan(GiaTriS_Box, 4));
+            return (MaNhiPhan.ChuyenSoSangMangNhiPhan(S_Box[Hang, Cot], 4));
         }
     }
 }

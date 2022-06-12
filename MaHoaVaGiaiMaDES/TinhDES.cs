@@ -13,73 +13,73 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 
         public Khoa KhoaDES1 { get => KhoaDES; set => KhoaDES = value; }
 
-        public MaNhiPhan ThucHienDES(Khoa key, MaNhiPhan ChuoiVaoDai, int MaHoaHayGiaiMa)
+        public MaNhiPhan ThucHienDES(Khoa khoa, MaNhiPhan Chuoi, int check)
         {
-            this.KhoaDES = key;
-            if (MaHoaHayGiaiMa == 1)
-                ChuoiVaoDai = ChuoiVaoDai.ChinhDoDai64();
+            this.KhoaDES = khoa;
+            if (check == 1)
+                Chuoi = Chuoi.ChinhDoDai();
 
             KhoaDES.SinhKhoaCon();
-            MaNhiPhan[] DSChuoiVao = ChuoiVaoDai.Chia(ChuoiVaoDai.DoDaiMaNhiPhan() / 64);
-            MaNhiPhan ChuoiVao, ChuoiKQ;
-            ChuoiKQ = new MaNhiPhan(0);
-            MaNhiPhan[] ChuoiSauIP;
-            MaNhiPhan ChuoiSauIP_1;
+            MaNhiPhan[] DSChuoi = Chuoi.Chia(Chuoi.DoDaiMangMaNhiPhan() / 64);
+            MaNhiPhan ChuoiKetQua;
+            ChuoiKetQua = new MaNhiPhan(0);
+            MaNhiPhan[] SauIP;
+            MaNhiPhan SauIP_1;
             MaNhiPhan L, R, F, TG;
-            for (int k = 0; k < DSChuoiVao.Length; k++)
+            for (int k = 0; k < DSChuoi.Length; k++)
             {
-                ChuoiSauIP = CacChuanDES.TinhIP(DSChuoiVao[k]);
-                L = ChuoiSauIP[0];
-                R = ChuoiSauIP[1];
+                SauIP = CacChuanDES.TinhIP(DSChuoi[k]);
+                L = SauIP[0];
+                R = SauIP[1];
 
                 for (int i = 0; i < 16; i++)
                 {
-                    F = HamF(R, KhoaDES.DayKhoaPhu[MaHoaHayGiaiMa == 1 ? i : 15 - i]);
+                    F = HamF(R, KhoaDES.DayKhoaPhu[check == 1 ? i : 15 - i]);
                     L = L.XOR(F);
                     TG = L;
                     L = R;
                     R = TG;
                 }
-                ChuoiSauIP_1 = CacChuanDES.TinhIP_1(R, L);
+                SauIP_1 = CacChuanDES.TinhIP_1(R, L);
 
-                ChuoiKQ = ChuoiKQ.Cong(ChuoiSauIP_1);
+                ChuoiKetQua = ChuoiKetQua.Cong(SauIP_1);
             }
-            if (MaHoaHayGiaiMa == -1) 
-                ChuoiKQ = ChuoiKQ.CatDuLieu64();
-            return ChuoiKQ;
+            if (check == -1)
+                ChuoiKetQua = ChuoiKetQua.Cat();
+            return ChuoiKetQua;
         }
 
-        public string ThucHienDESText(Khoa key, string ChuoiVao, int MaHoaHayGiaiMa)
+        public string ThucHienDESChuoi(Khoa key, string Chuoi, int check)
         {
-            MaNhiPhan chuoiNhiPhan;
-            if (MaHoaHayGiaiMa == 1)
+            MaNhiPhan chuoi;
+            if (check == 1)
             {
-                chuoiNhiPhan = MaNhiPhan.ChuyenChuSangNhiPhan(ChuoiVao);
+                chuoi = MaNhiPhan.ChuyenChuSangNhiPhan(Chuoi);
             }
             else
             {
-                chuoiNhiPhan = MaNhiPhan.ChuyenChuSangChuoiNhiPhan(ChuoiVao);
+                chuoi = MaNhiPhan.ChuyenChuSangChuoiNhiPhan(Chuoi);
             }
-            MaNhiPhan KQ = ThucHienDES(key, chuoiNhiPhan, MaHoaHayGiaiMa);
-            if (MaHoaHayGiaiMa == 1)
+            MaNhiPhan ketQua = ThucHienDES(key, chuoi, check);
+            if (check == 1)
             {
-                return KQ.VanBan;
+                return ketQua.VanBan;
             }
-            if (KQ == null)
+            if (ketQua == null)
             {
                 MessageBox.Show("Lỗi giải mã . kiểm tra khóa ");
                 return "";
             }
-            return MaNhiPhan.ChuyenNhiPhanSangChu(KQ);
+            return MaNhiPhan.ChuyenNhiPhanSangChu(ketQua);
         }
 
-        private MaNhiPhan HamF(MaNhiPhan chuoiVao, MaNhiPhan KhoaCon)
+        private MaNhiPhan HamF(MaNhiPhan chuoi, MaNhiPhan Khoa)
         {
-            MaNhiPhan KQ = CacChuanDES.TinhE(chuoiVao);
-            KQ = KQ.XOR(KhoaCon); 
-            KQ = CacChuanDES.TinhS_Box(KQ);
-            KQ = CacChuanDES.TinhP(KQ); 
-            return KQ;
+            MaNhiPhan ketQua = CacChuanDES.TinhE(chuoi);
+            ketQua = ketQua.XOR(Khoa); 
+            ketQua = CacChuanDES.TinhS_Box(ketQua);
+            ketQua = CacChuanDES.TinhP(ketQua); 
+            return ketQua;
         }
     }
 }

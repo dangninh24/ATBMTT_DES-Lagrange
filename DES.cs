@@ -237,7 +237,7 @@ namespace MaHoaDES
         {
             KhoaK = new Khoa(txtKhoaMaHoa.Text);
             TinhDES = new TinhDES();
-            string kq = TinhDES.ThucHienDESText(KhoaK, txtVanBanMaHoa.Text, 1);
+            string kq = TinhDES.ThucHienDESChuoi(KhoaK, txtVanBanMaHoa.Text, 1);
             txtMaHoa.Text = kq;
             if (kq == "")
             {
@@ -250,7 +250,7 @@ namespace MaHoaDES
         {
             KhoaK = new Khoa(txtKhoaGiaiMa.Text);
             TinhDES = new TinhDES();
-            string kq = TinhDES.ThucHienDESText(KhoaK, txtVanBanGiaiMa.Text, -1);
+            string kq = TinhDES.ThucHienDESChuoi(KhoaK, txtVanBanGiaiMa.Text, -1);
             txtGiaiMa.Text = kq;
             if (kq == "")
             {

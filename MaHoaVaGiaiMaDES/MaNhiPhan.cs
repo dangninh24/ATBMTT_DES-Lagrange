@@ -9,36 +9,36 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 {
     public class MaNhiPhan
     {
-        private int[] mangNhiPhan;
+        private int[] mangMaNhiPhan;
         private string _vanBan;
 
-        public int[] MangNhiPhan { get => mangNhiPhan; set => mangNhiPhan = value; }
+        public int[] MangMaNhiPhan { get => mangMaNhiPhan; set => mangMaNhiPhan = value; }
         public string _VanBan { get => _vanBan; set => _vanBan = value; }
 
-        public int DoDaiMaNhiPhan()
+        public int DoDaiMangMaNhiPhan()
         {
-            return MangNhiPhan.Length;
+            return MangMaNhiPhan.Length;
         }
 
         public MaNhiPhan(int doDai)
         {
-            MangNhiPhan = new int[doDai];
+            MangMaNhiPhan = new int[doDai];
         }
 
         public MaNhiPhan(int[] maNhiPhan)
         {
-            this.MangNhiPhan = maNhiPhan;
+            this.MangMaNhiPhan = maNhiPhan;
         }
 
         public MaNhiPhan(char kyTu)
         {
-            MangNhiPhan = new int[16];
-            int MaUnicode = (int)kyTu;
+            MangMaNhiPhan = new int[16];
+            int Ma = (int)kyTu;
             int i = 15;
-            while (MaUnicode > 0)
+            while (Ma > 0)
             {
-                MangNhiPhan[i] = MaUnicode % 2;
-                MaUnicode = MaUnicode / 2;
+                MangMaNhiPhan[i] = Ma % 2;
+                Ma = Ma / 2;
                 i--;
             }
         }
@@ -51,191 +51,191 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
         public string ChuyenMaNhiPhanSangChu()
         {
             string str = "";
-            foreach (var ch in MangNhiPhan)
+            foreach (var ch in MangMaNhiPhan)
             {
                 str += ch.ToString();
             }
             return str;
         }
 
-        public MaNhiPhan Cat(long viTriBatDau, long SoLuong)
+        public MaNhiPhan Cat(long viTri, long SoLuong)
         {
-            int[] mangNhiPhanDuocCat = new int[SoLuong];
-            for (long i = viTriBatDau; i < viTriBatDau + SoLuong; i++)
+            int[] MangCat = new int[SoLuong];
+            for (long i = viTri; i < viTri + SoLuong; i++)
             {
-                mangNhiPhanDuocCat[i - viTriBatDau] = MangNhiPhan[i];
+                MangCat[i - viTri] = MangMaNhiPhan[i];
             }
-            return (new MaNhiPhan(mangNhiPhanDuocCat));
+            return (new MaNhiPhan(MangCat));
         }
 
-        public MaNhiPhan ChinhDoDai64()
+        public MaNhiPhan ChinhDoDai()
         {
-            int Mod = DoDaiMaNhiPhan() % 64;
-            int thieu = 64 - Mod;
-            MaNhiPhan chuoiBuThieu = new MaNhiPhan(thieu);
-            MaNhiPhan KQ = new MaNhiPhan(MangNhiPhan);
-            KQ = KQ.Cong(chuoiBuThieu);
+            int Mod64 = DoDaiMangMaNhiPhan() % 64;
+            int so = 64 - Mod64;
+            MaNhiPhan chuoiBu = new MaNhiPhan(so);
+            MaNhiPhan ketQua = new MaNhiPhan(MangMaNhiPhan);
+            ketQua = ketQua.Cong(chuoiBu);
 
-            MaNhiPhan ChuoiChieuDai = MaNhiPhan.ChuyenSoSangNhiPhan((int)DoDaiMaNhiPhan(), 64);
-            KQ = KQ.Cong(ChuoiChieuDai);
-            return KQ;
+            MaNhiPhan ChuoiChieuDai = MaNhiPhan.ChuyenSoSangMangNhiPhan((int)DoDaiMangMaNhiPhan(), 64);
+            ketQua = ketQua.Cong(ChuoiChieuDai);
+            return ketQua;
         }
 
-        public MaNhiPhan CatDuLieu64()
+        public MaNhiPhan Cat()
         {
-            MaNhiPhan ChuoiChieuDai = this.Cat(DoDaiMaNhiPhan() - 64, 64);
-            long d = MaNhiPhan.ChuyenNhiPhanSangSo(ChuoiChieuDai);
-            MaNhiPhan KQ = this.Cat(0, DoDaiMaNhiPhan() - 64); 
-            if (d < 0 || d > KQ.DoDaiMaNhiPhan())
+            MaNhiPhan Chuoi = this.Cat(DoDaiMangMaNhiPhan() - 64, 64);
+            long so = MaNhiPhan.ChuyenNhiPhanSangSo(Chuoi);
+            MaNhiPhan ketQua = this.Cat(0, DoDaiMangMaNhiPhan() - 64); 
+            if (so < 0 || so > ketQua.DoDaiMangMaNhiPhan())
                 return null;
-            KQ = KQ.Cat(0, d);
-            return KQ;
+            ketQua = ketQua.Cat(0, so);
+            return ketQua;
         }
 
-        public MaNhiPhan XOR(MaNhiPhan Chuoi2)
+        public MaNhiPhan XOR(MaNhiPhan Chuoi)
         {
-            if (DoDaiMaNhiPhan() != Chuoi2.DoDaiMaNhiPhan())
+            if (DoDaiMangMaNhiPhan() != Chuoi.DoDaiMangMaNhiPhan())
                 return null;
-            MaNhiPhan ChuoiKQ = new MaNhiPhan(DoDaiMaNhiPhan());
+            MaNhiPhan ketQua = new MaNhiPhan(DoDaiMangMaNhiPhan());
             int x = 0, y = 0;
-            for (int i = 0; i < ChuoiKQ.DoDaiMaNhiPhan(); i++)
+            for (int i = 0; i < ketQua.DoDaiMangMaNhiPhan(); i++)
             {
-                x = MangNhiPhan[i];
-                y = Chuoi2.MangNhiPhan[i];
+                x = MangMaNhiPhan[i];
+                y = Chuoi.MangMaNhiPhan[i];
                 if (x != y) 
                 {
-                    ChuoiKQ.MangNhiPhan[i] = 1;
+                    ketQua.MangMaNhiPhan[i] = 1;
                 }
                 else
                 {
-                    ChuoiKQ.MangNhiPhan[i] = 0;
+                    ketQua.MangMaNhiPhan[i] = 0;
                 }
             }
-            return ChuoiKQ;
+            return ketQua;
         }
 
 
-        public MaNhiPhan DichTraiBit(int SoBitDich)
+        public MaNhiPhan DichTraiBit(int so)
         {
-            MaNhiPhan KQ = new MaNhiPhan(MangNhiPhan);
+            MaNhiPhan ketQua = new MaNhiPhan(MangMaNhiPhan);
             int tam = 0;
-            for (int i = 0; i < SoBitDich; i++) 
+            for (int i = 0; i < so; i++) 
             {
-                tam = MangNhiPhan[0];
-                for (int j = 0; j < MangNhiPhan.Length - 1; j++)
+                tam = MangMaNhiPhan[0];
+                for (int j = 0; j < MangMaNhiPhan.Length - 1; j++)
                 {
-                    KQ.MangNhiPhan[j] = MangNhiPhan[j + 1]; 
+                    ketQua.MangMaNhiPhan[j] = MangMaNhiPhan[j + 1]; 
                 }
-                KQ.MangNhiPhan[MangNhiPhan.Length - 1] = tam; 
+                ketQua.MangMaNhiPhan[MangMaNhiPhan.Length - 1] = tam; 
             }
-            return (KQ);
+            return (ketQua);
         }
 
-        public MaNhiPhan Cong(MaNhiPhan chuoi2)
+        public MaNhiPhan Cong(MaNhiPhan chuoi)
         {
-            MaNhiPhan ChuoiKQ = new MaNhiPhan(chuoi2.DoDaiMaNhiPhan() + this.DoDaiMaNhiPhan());
-            for (int i = 0; i < DoDaiMaNhiPhan(); i++)
+            MaNhiPhan ketQua = new MaNhiPhan(chuoi.DoDaiMangMaNhiPhan() + this.DoDaiMangMaNhiPhan());
+            for (int i = 0; i < DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiKQ.MangNhiPhan[i] = MangNhiPhan[i];
+                ketQua.MangMaNhiPhan[i] = MangMaNhiPhan[i];
             }
-            for (int i = 0; i < chuoi2.DoDaiMaNhiPhan(); i++)
+            for (int i = 0; i < chuoi.DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiKQ.MangNhiPhan[DoDaiMaNhiPhan() + i] = chuoi2.MangNhiPhan[i];
+                ketQua.MangMaNhiPhan[DoDaiMangMaNhiPhan() + i] = chuoi.MangMaNhiPhan[i];
             }
-            return ChuoiKQ; 
+            return ketQua; 
         }
 
-        public MaNhiPhan[] ChiaDoi()
+        public MaNhiPhan[] Chia()
         {
-            MaNhiPhan ChuoiTrai = new MaNhiPhan(this.DoDaiMaNhiPhan() / 2);
-            MaNhiPhan ChuoiPhai = new MaNhiPhan(DoDaiMaNhiPhan() - ChuoiTrai.DoDaiMaNhiPhan());
-            for (int i = 0; i < ChuoiTrai.DoDaiMaNhiPhan(); i++)
+            MaNhiPhan Trai = new MaNhiPhan(this.DoDaiMangMaNhiPhan() / 2);
+            MaNhiPhan Phai = new MaNhiPhan(DoDaiMangMaNhiPhan() - Trai.DoDaiMangMaNhiPhan());
+            for (int i = 0; i < Trai.DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiTrai.MangNhiPhan[i] = MangNhiPhan[i];
+                Trai.MangMaNhiPhan[i] = MangMaNhiPhan[i];
             }
-            for (int i = 0; i < ChuoiPhai.DoDaiMaNhiPhan(); i++)
+            for (int i = 0; i < Phai.DoDaiMangMaNhiPhan(); i++)
             {
-                ChuoiPhai.MangNhiPhan[i] = MangNhiPhan[i + ChuoiTrai.DoDaiMaNhiPhan()];
+                Phai.MangMaNhiPhan[i] = MangMaNhiPhan[i + Trai.DoDaiMangMaNhiPhan()];
             }
-            return (new MaNhiPhan[] { ChuoiTrai, ChuoiPhai });
+            return (new MaNhiPhan[] { Trai, Phai });
         }
 
-        public MaNhiPhan[] Chia(int SoLuong)
+        public MaNhiPhan[] Chia(int so)
         {
-            MaNhiPhan[] KQ = new MaNhiPhan[SoLuong];
+            MaNhiPhan[] ketQua = new MaNhiPhan[so];
             MaNhiPhan chuoi;
-            int SoBit = DoDaiMaNhiPhan() / SoLuong;
-            int[] NhiPhan = new int[SoBit];
-            int leng = SoBit;
-            for (int i = 0; i < SoLuong; i++)
+            int Bit = DoDaiMangMaNhiPhan() / so;
+            int[] maNP = new int[Bit];
+            int leng = Bit;
+            for (int i = 0; i < so; i++)
             {
-                if (i * SoBit + SoBit > DoDaiMaNhiPhan())
+                if (i * Bit + Bit > DoDaiMangMaNhiPhan())
                 {
-                    SoBit = DoDaiMaNhiPhan() - i * SoBit;
+                    Bit = DoDaiMangMaNhiPhan() - i * Bit;
                 }
-                NhiPhan = new int[SoBit];
-                for (int j = i * SoBit; j < i * SoBit + SoBit; j++)
+                maNP = new int[Bit];
+                for (int j = i * Bit; j < i * Bit + Bit; j++)
                 {
-                    NhiPhan[j - i * SoBit] = MangNhiPhan[j];
+                    maNP[j - i * Bit] = MangMaNhiPhan[j];
                 }
-                chuoi = new MaNhiPhan(NhiPhan);
-                KQ[i] = chuoi;
+                chuoi = new MaNhiPhan(maNP);
+                ketQua[i] = chuoi;
             }
-            return (KQ);
+            return (ketQua);
         }
 
-        public static MaNhiPhan ChuyenSoSangNhiPhan(int SoInput, int doDai)
+        public static MaNhiPhan ChuyenSoSangMangNhiPhan(int So, int doDai)
         {
-            MaNhiPhan ChuoiKQ = new MaNhiPhan(doDai);
+            MaNhiPhan chuoi = new MaNhiPhan(doDai);
             int i = doDai - 1;
-            while (SoInput > 0)
+            while (So > 0)
             {
-                ChuoiKQ.MangNhiPhan[i] = SoInput % 2;
-                SoInput = SoInput / 2;
+                chuoi.MangMaNhiPhan[i] = So % 2;
+                So = So / 2;
                 i--;
             }
-            return ChuoiKQ;
+            return chuoi;
         }
 
-        public static int[] ChuyenSoSangMangNhiPhan(int SoInput, int doDai)
+        public static int[] ChuyenSoSangMangMaNhiPhan(int So, int doDai)
         {
-            int[] MangNhiPhan = new int[doDai];
+            int[] MangNP = new int[doDai];
             int i = doDai - 1;
-            while (SoInput > 0)
+            while (So > 0)
             {
-                MangNhiPhan[i] = SoInput % 2;
-                SoInput = SoInput / 2;
+                MangNP[i] = So % 2;
+                So = So / 2;
                 i--;
             }
-            return MangNhiPhan;
+            return MangNP;
         }
 
-        public static string ChuyenSoSangStringNhiPhan(int SoInput, int doDai)
+        public static string ChuyenSoSangStringNhiPhan(int So, int doDai)
         {
-            return ChuyenSoSangNhiPhan(SoInput, doDai).VanBan;
+            return ChuyenSoSangMangNhiPhan(So, doDai).VanBan;
         }
 
-        public static int ChuyenNhiPhanSangSo(MaNhiPhan ChuoiVao)
+        public static int ChuyenNhiPhanSangSo(MaNhiPhan chuoi)
         {
-            int KQ = 0;
-            for (int i = ChuoiVao.DoDaiMaNhiPhan() - 1; i >= 0; i--)
+            int ketQua = 0;
+            for (int i = chuoi.DoDaiMangMaNhiPhan() - 1; i >= 0; i--)
             {
-                KQ += ChuoiVao.MangNhiPhan[i] * (int)Math.Pow(2, ChuoiVao.DoDaiMaNhiPhan() - i - 1);
+                ketQua += chuoi.MangMaNhiPhan[i] * (int)Math.Pow(2, chuoi.DoDaiMangMaNhiPhan() - i - 1);
             }
-            return KQ;
+            return ketQua;
         }
 
-        public static MaNhiPhan ChuyenChuSangChuoiNhiPhan(string ChuoiVao)
+        public static MaNhiPhan ChuyenChuSangChuoiNhiPhan(string chuoi)
         {
             try
             {
-                ChuoiVao = ChuoiVao.Trim();
-                int[] mangNhiPhan = new int[ChuoiVao.Length];
-                for (int i = ChuoiVao.Length - 1; i >= 0; i--)
+                chuoi = chuoi.Trim();
+                int[] MangNP = new int[chuoi.Length];
+                for (int i = chuoi.Length - 1; i >= 0; i--)
                 {
-                    mangNhiPhan[i] = int.Parse(ChuoiVao[i].ToString());
+                    MangNP[i] = int.Parse(chuoi[i].ToString());
                 }
-                return (new MaNhiPhan(mangNhiPhan));
+                return (new MaNhiPhan(MangNP));
             }
             catch (Exception ex)
             {
@@ -245,60 +245,60 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 
         }
 
-        public static int ChuyenMangSangByte(int[] mang, int batDau, int KetThuc)
+        public static int ChuyenMangSangByte(int[] mang, int dau, int cuoi)
         {
-            int KQ = 0;
-            for (int i = KetThuc - 1; i >= batDau; i--)
+            int ketQua = 0;
+            for (int i = cuoi - 1; i >= dau; i--)
             {
-                KQ += mang[i] * (int)Math.Pow(2, KetThuc - i - 1);
+                ketQua += mang[i] * (int)Math.Pow(2, cuoi - i - 1);
             }
-            return KQ;
+            return ketQua;
         }
 
-        public static int ChuyenNhiPhanSangSo(string ChuoiVao)
+        public static int ChuyenNhiPhanSangSo(string chuoi)
         {
-            int KQ = 0;
-            for (int i = ChuoiVao.Length - 1; i >= 0; i--)
+            int ketQua = 0;
+            for (int i = chuoi.Length - 1; i >= 0; i--)
             {
-                KQ += int.Parse(ChuoiVao[i].ToString()) * (int)Math.Pow(2, ChuoiVao.Length - i - 1);
+                ketQua += int.Parse(chuoi[i].ToString()) * (int)Math.Pow(2, chuoi.Length - i - 1);
             }
-            return KQ;
+            return ketQua;
         }
 
-        public static string ChuyenNhiPhanSangChu(MaNhiPhan ChuoiVao)
+        public static string ChuyenNhiPhanSangChu(MaNhiPhan chuoi)
         {
-            int soChu = ChuoiVao.DoDaiMaNhiPhan() / 16;
-            MaNhiPhan[] MangChuoi = ChuoiVao.Chia(soChu);
-            string KQ = "";
-            foreach (var ch in MangChuoi)
+            int tongSoChu = chuoi.DoDaiMangMaNhiPhan() / 16;
+            MaNhiPhan[] Mang = chuoi.Chia(tongSoChu);
+            string ketQua = "";
+            foreach (var ch in Mang)
             {
-                KQ += (char)ChuyenNhiPhanSangSo(ch);
+                ketQua += (char)ChuyenNhiPhanSangSo(ch);
             }
-            return KQ;
+            return ketQua;
         }
 
-        public static MaNhiPhan ChuyenChuSangNhiPhan(string text)
+        public static MaNhiPhan ChuyenChuSangNhiPhan(string str)
         {
-            MaNhiPhan KQ = new MaNhiPhan(0);
+            MaNhiPhan ketQua = new MaNhiPhan(0);
             MaNhiPhan chuoi;
-            foreach (var ch in text)
+            foreach (var ch in str)
             {
                 chuoi = new MaNhiPhan(ch);
-                KQ = KQ.Cong(chuoi);
+                ketQua = ketQua.Cong(chuoi);
             }
-            return KQ;
+            return ketQua;
         }
 
-        public static MaNhiPhan ChuyenKhoaSangNhiPhan(string text)
+        public static MaNhiPhan ChuyenKhoaSangNhiPhan(string str)
         {
-            MaNhiPhan KQ = new MaNhiPhan(0);
+            MaNhiPhan ketQua = new MaNhiPhan(0);
             MaNhiPhan chuoi;
-            foreach (var ch in text)
+            foreach (var ch in str)
             {
-                chuoi = MaNhiPhan.ChuyenSoSangNhiPhan((int)ch, 16);
-                KQ = KQ.Cong(chuoi);
+                chuoi = MaNhiPhan.ChuyenSoSangMangNhiPhan((int)ch, 16);
+                ketQua = ketQua.Cong(chuoi);
             }
-            return KQ;
+            return ketQua;
         }
 
     }

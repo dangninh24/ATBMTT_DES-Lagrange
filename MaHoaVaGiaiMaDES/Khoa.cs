@@ -24,30 +24,30 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
         public Khoa(string khoa)
         {
             khoaK = new MaNhiPhan(0);
-            foreach (var ch in khoa)
+            foreach (var items in khoa)
             {
-                khoaK = khoaK.Cong(MaNhiPhan.ChuyenSoSangNhiPhan(Khoa.ChuyenHexaSangHe10(ch), 4));
+                khoaK = khoaK.Cong(MaNhiPhan.ChuyenSoSangMangNhiPhan(Khoa.ChuyenHexaSangHe10(items), 4));
             }
         }
 
         public bool KiemTraKhoa()
         {
-            return (khoaK.DoDaiMaNhiPhan() % 64 == 0);
+            return (khoaK.DoDaiMangMaNhiPhan() % 64 == 0);
         }
 
         public void SinhKhoaCon()
         {
             DayKhoaPhu = new MaNhiPhan[16];
-            MaNhiPhan C0, D0, MotKhoaPhu;
+            MaNhiPhan C, D, KhoaP;
             MaNhiPhan[] ChuoiSauPC1 = CacChuanDES.TinhPC1(KhoaK);
-            C0 = ChuoiSauPC1[0];
-            D0 = ChuoiSauPC1[1];
+            C = ChuoiSauPC1[0];
+            D = ChuoiSauPC1[1];
             for (int i = 0; i < 16; i++)
             {
-                C0 = C0.DichTraiBit(CacChuanDES.soBitDich[i]);
-                D0 = D0.DichTraiBit(CacChuanDES.soBitDich[i]);
-                MotKhoaPhu = CacChuanDES.TinhPC2(C0, D0);
-                DayKhoaPhu[i] = MotKhoaPhu;
+                C = C.DichTraiBit(CacChuanDES.soBitDich[i]);
+                D = D.DichTraiBit(CacChuanDES.soBitDich[i]);
+                KhoaP = CacChuanDES.TinhPC2(C, D);
+                DayKhoaPhu[i] = KhoaP;
             }
 
         }
@@ -66,7 +66,7 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
                 chuoiNhiPhan = new MaNhiPhan(0);
                 foreach (var ch in Chuoi)
                 {
-                    chNP = MaNhiPhan.ChuyenSoSangNhiPhan(Khoa.ChuyenHexaSangHe10(ch), 4);
+                    chNP = MaNhiPhan.ChuyenSoSangMangNhiPhan(Khoa.ChuyenHexaSangHe10(ch), 4);
                     chuoiNhiPhan = chuoiNhiPhan.Cong(chNP);
                 }
             }
@@ -74,74 +74,74 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 
         public bool KiemTra()
         {
-            bool Kt = true;
-            foreach (char ch in Chuoi)
+            bool check = true;
+            foreach (char items in Chuoi)
             {
-                if (!Khoa.Hex.Contains(ch))
+                if (!Khoa.Hex.Contains(items))
                 {
-                    Kt = false;
+                    check = false;
                     break;
 
                 }
             }
-            return Kt;
+            return check;
         }
 
         public static int ChuyenHexaSangHe10(char K)
         {
-            int KQ = 0;
+            int ketQua = 0;
             switch (K)
             {
                 case '0':
-                    KQ = 0;
+                    ketQua = 0;
                     break;
                 case '1':
-                    KQ = 1;
+                    ketQua = 1;
                     break;
                 case '2':
-                    KQ = 2;
+                    ketQua = 2;
                     break;
                 case '3':
-                    KQ = 3;
+                    ketQua = 3;
                     break;
                 case '4':
-                    KQ = 4;
+                    ketQua = 4;
                     break;
                 case '5':
-                    KQ = 5;
+                    ketQua = 5;
                     break;
                 case '6':
-                    KQ = 6;
+                    ketQua = 6;
                     break;
                 case '7':
-                    KQ = 7;
+                    ketQua = 7;
                     break;
                 case '8':
-                    KQ = 8;
+                    ketQua = 8;
                     break;
                 case '9':
-                    KQ = 9;
+                    ketQua = 9;
                     break;
                 case 'A':
-                    KQ = 10;
+                    ketQua = 10;
                     break;
                 case 'B':
-                    KQ = 11;
+                    ketQua = 11;
                     break;
                 case 'C':
-                    KQ = 12;
+                    ketQua = 12;
                     break;
                 case 'D':
-                    KQ = 13;
+                    ketQua = 13;
                     break;
                 case 'E':
-                    KQ = 14;
+                    ketQua = 14;
                     break;
                 case 'F':
-                    KQ = 15;
+                    ketQua = 15;
                     break;
             }
-            return KQ;
+            return ketQua;
         }
     }
 }
