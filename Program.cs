@@ -16,7 +16,7 @@ namespace MaHoaDES
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MaHoa());
+            Application.Run(new DES());
         }
     }
 }

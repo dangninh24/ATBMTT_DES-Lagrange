@@ -1,6 +1,6 @@
 ﻿namespace MaHoaDES
 {
-    partial class MaHoa
+    partial class DES
     {
         /// <summary>
         /// Required designer variable.
@@ -31,21 +31,21 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtVanBanGiaiMa = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnGiaiMa = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtGiaiMa = new System.Windows.Forms.RichTextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtKhoaGiaiMa = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtVanBanGiaiMa = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtVanBanMaHoa = new System.Windows.Forms.RichTextBox();
             this.btnMaHoa = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtMaHoa = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtKhoaMaHoa = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtVanBanMaHoa = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -107,13 +107,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.txtVanBanGiaiMa);
+            this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.btnGiaiMa);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.txtGiaiMa);
-            this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.txtKhoaGiaiMa);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.txtVanBanGiaiMa);
             this.groupBox4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox4.Location = new System.Drawing.Point(505, 64);
             this.groupBox4.Name = "groupBox4";
@@ -121,6 +121,25 @@
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Giải mã văn bản";
+            // 
+            // txtVanBanGiaiMa
+            // 
+            this.txtVanBanGiaiMa.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtVanBanGiaiMa.Location = new System.Drawing.Point(6, 41);
+            this.txtVanBanGiaiMa.Name = "txtVanBanGiaiMa";
+            this.txtVanBanGiaiMa.Size = new System.Drawing.Size(381, 75);
+            this.txtVanBanGiaiMa.TabIndex = 10;
+            this.txtVanBanGiaiMa.Text = "";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label11.Location = new System.Drawing.Point(3, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(147, 16);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "Văn bản cần giải mã: ";
             // 
             // btnGiaiMa
             // 
@@ -152,51 +171,33 @@
             this.txtGiaiMa.TabIndex = 5;
             this.txtGiaiMa.Text = "";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label11.Location = new System.Drawing.Point(6, 51);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 16);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Văn bản: ";
-            // 
             // txtKhoaGiaiMa
             // 
-            this.txtKhoaGiaiMa.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtKhoaGiaiMa.Location = new System.Drawing.Point(86, 95);
+            this.txtKhoaGiaiMa.Font = new System.Drawing.Font("Arial", 9F);
+            this.txtKhoaGiaiMa.Location = new System.Drawing.Point(59, 125);
             this.txtKhoaGiaiMa.Name = "txtKhoaGiaiMa";
-            this.txtKhoaGiaiMa.Size = new System.Drawing.Size(224, 22);
+            this.txtKhoaGiaiMa.Size = new System.Drawing.Size(224, 21);
             this.txtKhoaGiaiMa.TabIndex = 4;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label12.Location = new System.Drawing.Point(5, 100);
+            this.label12.Location = new System.Drawing.Point(5, 128);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(48, 16);
             this.label12.TabIndex = 2;
             this.label12.Text = "Khóa: ";
             // 
-            // txtVanBanGiaiMa
-            // 
-            this.txtVanBanGiaiMa.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtVanBanGiaiMa.Location = new System.Drawing.Point(86, 46);
-            this.txtVanBanGiaiMa.Name = "txtVanBanGiaiMa";
-            this.txtVanBanGiaiMa.Size = new System.Drawing.Size(224, 22);
-            this.txtVanBanGiaiMa.TabIndex = 3;
-            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtVanBanMaHoa);
             this.groupBox3.Controls.Add(this.btnMaHoa);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txtMaHoa);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.txtKhoaMaHoa);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.txtVanBanMaHoa);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox3.Location = new System.Drawing.Point(6, 64);
             this.groupBox3.Name = "groupBox3";
@@ -204,6 +205,15 @@
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Mã hóa văn bản";
+            // 
+            // txtVanBanMaHoa
+            // 
+            this.txtVanBanMaHoa.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtVanBanMaHoa.Location = new System.Drawing.Point(8, 41);
+            this.txtVanBanMaHoa.Name = "txtVanBanMaHoa";
+            this.txtVanBanMaHoa.Size = new System.Drawing.Size(381, 75);
+            this.txtVanBanMaHoa.TabIndex = 8;
+            this.txtVanBanMaHoa.Text = "";
             // 
             // btnMaHoa
             // 
@@ -239,37 +249,29 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label7.Location = new System.Drawing.Point(6, 51);
+            this.label7.Location = new System.Drawing.Point(5, 22);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 16);
+            this.label7.Size = new System.Drawing.Size(147, 16);
             this.label7.TabIndex = 1;
-            this.label7.Text = "Văn bản: ";
+            this.label7.Text = "Văn bản cần mã hóa: ";
             // 
             // txtKhoaMaHoa
             // 
-            this.txtKhoaMaHoa.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtKhoaMaHoa.Location = new System.Drawing.Point(86, 90);
+            this.txtKhoaMaHoa.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtKhoaMaHoa.Location = new System.Drawing.Point(86, 126);
             this.txtKhoaMaHoa.Name = "txtKhoaMaHoa";
-            this.txtKhoaMaHoa.Size = new System.Drawing.Size(224, 22);
+            this.txtKhoaMaHoa.Size = new System.Drawing.Size(224, 21);
             this.txtKhoaMaHoa.TabIndex = 4;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.Location = new System.Drawing.Point(5, 95);
+            this.label8.Location = new System.Drawing.Point(5, 129);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 16);
             this.label8.TabIndex = 2;
             this.label8.Text = "Khóa: ";
-            // 
-            // txtVanBanMaHoa
-            // 
-            this.txtVanBanMaHoa.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtVanBanMaHoa.Location = new System.Drawing.Point(86, 46);
-            this.txtVanBanMaHoa.Name = "txtVanBanMaHoa";
-            this.txtVanBanMaHoa.Size = new System.Drawing.Size(224, 22);
-            this.txtVanBanMaHoa.TabIndex = 3;
             // 
             // label6
             // 
@@ -504,13 +506,13 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Khóa cần chia sẻ";
             // 
-            // MaHoa
+            // DES
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 576);
             this.Controls.Add(this.tabControl1);
-            this.Name = "MaHoa";
+            this.Name = "DES";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
@@ -561,19 +563,19 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtKhoaMaHoa;
-        private System.Windows.Forms.TextBox txtVanBanMaHoa;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox txtMaHoa;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RichTextBox txtGiaiMa;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtKhoaGiaiMa;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtVanBanGiaiMa;
         private System.Windows.Forms.Button btnGiaiMa;
         private System.Windows.Forms.Button btnMaHoa;
+        private System.Windows.Forms.RichTextBox txtVanBanMaHoa;
+        private System.Windows.Forms.RichTextBox txtVanBanGiaiMa;
+        private System.Windows.Forms.Label label11;
     }
 }
 

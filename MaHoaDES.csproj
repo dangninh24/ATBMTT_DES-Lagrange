@@ -48,17 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChiaSeKhoaBiMat\ChiaSeBiMat.cs" />
-    <Compile Include="MaHoa.cs">
+    <Compile Include="DES.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaHoa.Designer.cs">
-      <DependentUpon>MaHoa.cs</DependentUpon>
+    <Compile Include="DES.Designer.cs">
+      <DependentUpon>DES.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaHoaVaGiaiMaDES\CacChuanDES.cs" />
+    <Compile Include="MaHoaVaGiaiMaDES\Khoa.cs" />
+    <Compile Include="MaHoaVaGiaiMaDES\MaNhiPhan.cs" />
+    <Compile Include="MaHoaVaGiaiMaDES\TinhDES.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChiaSeKhoaBiMat\ThanhVien.cs" />
-    <EmbeddedResource Include="MaHoa.resx">
-      <DependentUpon>MaHoa.cs</DependentUpon>
+    <EmbeddedResource Include="DES.resx">
+      <DependentUpon>DES.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,8 +86,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MaHoaVaGiaiMaDES\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

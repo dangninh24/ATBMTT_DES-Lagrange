@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaHoaDES.MaHoaVaGiaiMaDES;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,10 +12,12 @@ using System.Windows.Forms;
 
 namespace MaHoaDES
 {
-    public partial class MaHoa : Form
+    public partial class DES : Form
     {
         private List<ThanhVien> listTV = new List<ThanhVien>();
-        public MaHoa()
+        TinhDES TinhDES;
+        Khoa KhoaK;
+        public DES()
         {
             InitializeComponent();
         }
@@ -203,19 +206,77 @@ namespace MaHoaDES
         private void btnMaHoa_Click(object sender, EventArgs e)
         {
             string maHoa = txtVanBanMaHoa.Text;
+            string khoa = txtKhoaMaHoa.Text;
+            
 
-            if (maHoa.Equals(""))
+            if (maHoa.Equals("") || khoa.Equals(""))
             {
-                MessageBox.Show("Văn bản không được để trống. ", "Thông báo");
-            } else
+                MessageBox.Show("Văn bản hoặc khóa mã hóa không được để trống. ", "Thông báo");
+            }
+            else if (check(khoa, "Mã hóa"))
             {
-                txtMaHoa.Text = maHoa;
+                MaHoa();
             }
         }
 
         private void btnGiaiMa_Click(object sender, EventArgs e)
         {
+            string giaiMa = txtVanBanGiaiMa.Text;
+            string khoa = txtKhoaGiaiMa.Text;
 
+            if (giaiMa.Equals("") || khoa.Equals(""))
+            {
+                MessageBox.Show("Văn bản hoặc khóa giải mã không được để trống. ", "Thông báo");
+            } else if(check(khoa, "Giải mã"))
+            {
+                GiaiMa();
+            }
+        }
+
+        private void MaHoa()
+        {
+            KhoaK = new Khoa(txtKhoaMaHoa.Text);
+            TinhDES = new TinhDES();
+            string kq = TinhDES.ThucHienDESText(KhoaK, txtVanBanMaHoa.Text, 1);
+            txtMaHoa.Text = kq;
+            if (kq == "")
+            {
+                return;
+            }
+            MessageBox.Show("Giải mã chuỗi thành công");
+        }
+
+        private void GiaiMa()
+        {
+            KhoaK = new Khoa(txtKhoaGiaiMa.Text);
+            TinhDES = new TinhDES();
+            string kq = TinhDES.ThucHienDESText(KhoaK, txtVanBanGiaiMa.Text, -1);
+            txtGiaiMa.Text = kq;
+            if (kq == "")
+            {
+                return;
+            }
+            MessageBox.Show("Giải mã chuỗi thành công");
+        }
+
+        private bool check(string khoa, string str)
+        {
+            if(khoa.Length == 16)
+            {
+                for(int i = 0; i < khoa.Length; i++)
+                {
+                    if (!((int)khoa[i] >= 48 && (int)khoa[i] <= 57) && !((int)khoa[i] >= 65 && (int)khoa[i] <= 70))
+                    {
+                        MessageBox.Show($"Khóa {str} phải có dạng HEX(16).");
+                        return false;
+                    }
+                }
+                return true;
+            } else
+            {
+                MessageBox.Show($"Khóa {str} phải có dạng HEX(16).");
+                return false;
+            }
         }
     }
 }
