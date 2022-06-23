@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Word;
 
 namespace MaHoaDES
 {
     public partial class DES : Form
     {
         private List<ThanhVien> listTV = new List<ThanhVien>();
-        TinhDES TinhDES;
-        Khoa KhoaK;
+        bool check = true; // file là true - false là văn bản.
+        bool phuongPhap = true; // true là mã hóa - false là giải mã.
+        TinhDES tinhDes;
+        Khoa khoaK;
+
         public DES()
         {
             InitializeComponent();
@@ -95,7 +100,7 @@ namespace MaHoaDES
                         for (BigInteger i = 0; i < ChiaSeBiMat.Instance.ThanhVienMoKhoa - 1; i++)
                         {
                             Random random = new Random();
-                            biMat.Add(random.Next(1, 10));
+                            biMat.Add(random.Next(0, (int)ChiaSeBiMat.Instance.NguyenToP));
                         }
 
                         ChiaSeBiMat.Instance.BiMat = biMat;
@@ -108,11 +113,15 @@ namespace MaHoaDES
                             TV.Pi = traoPi(TV.Xi);
                             thanhVien.Add(TV);
                         }
-
+                        if (ChiaSeBiMat.Instance.ThanhVien != null)
+                        {
+                            ChiaSeBiMat.Instance.ThanhVien.Clear();
+                            lstvThanhVien.Items.Clear();
+                            lstvThanhVienMoKhoa.Items.Clear();
+                        }
                         ChiaSeBiMat.Instance.ThanhVien = thanhVien;
 
                         lstvThanhVienMoKhoa.CheckBoxes = true;
-
                         foreach (ThanhVien thanhvien in ChiaSeBiMat.Instance.ThanhVien)
                         {
                             ListViewItem item = new ListViewItem(thanhvien.Xi.ToString());
@@ -126,8 +135,9 @@ namespace MaHoaDES
                             item.SubItems.Add(thanhvien.Xi.ToString());
                             item.SubItems.Add(thanhvien.Pi.ToString());
                             lstvThanhVienMoKhoa.Items.Add(item);
-
                         }
+
+
                     }
                     else
                     {
@@ -205,78 +215,129 @@ namespace MaHoaDES
 
         private void btnMaHoa_Click(object sender, EventArgs e)
         {
-            string maHoa = txtVanBanMaHoa.Text;
-            string khoa = txtKhoaMaHoa.Text;
-            
-
-            if (maHoa.Equals("") || khoa.Equals(""))
-            {
-                MessageBox.Show("Văn bản hoặc khóa mã hóa không được để trống. ", "Thông báo");
-            }
-            else if (check(khoa, "Mã hóa"))
-            {
-                MaHoa();
-            }
+            check = false;
+            phuongPhap = true;
+            des();
         }
 
         private void btnGiaiMa_Click(object sender, EventArgs e)
         {
-            string giaiMa = txtVanBanGiaiMa.Text;
-            string khoa = txtKhoaGiaiMa.Text;
-
-            if (giaiMa.Equals("") || khoa.Equals(""))
-            {
-                MessageBox.Show("Văn bản hoặc khóa giải mã không được để trống. ", "Thông báo");
-            } else if(check(khoa, "Giải mã"))
-            {
-                GiaiMa();
-            }
+            check = false;
+            phuongPhap = false;
+            des();
         }
 
-        private void MaHoa()
+        private void btnMaHoaFile_Click(object sender, EventArgs e)
         {
-            KhoaK = new Khoa(txtKhoaMaHoa.Text);
-            TinhDES = new TinhDES();
-            string kq = TinhDES.ThucHienDESChuoi(KhoaK, txtVanBanMaHoa.Text, 1);
-            txtMaHoa.Text = kq;
-            if (kq == "")
-            {
-                return;
-            }
-            MessageBox.Show("Giải mã chuỗi thành công");
+            check = true;
+            phuongPhap = true;
+            des();
         }
 
-        private void GiaiMa()
+        private void btnGiaiMaFile_Click(object sender, EventArgs e)
         {
-            KhoaK = new Khoa(txtKhoaGiaiMa.Text);
-            TinhDES = new TinhDES();
-            string kq = TinhDES.ThucHienDESChuoi(KhoaK, txtVanBanGiaiMa.Text, -1);
-            txtGiaiMa.Text = kq;
-            if (kq == "")
-            {
-                return;
-            }
-            MessageBox.Show("Giải mã chuỗi thành công");
+            check = true;
+            phuongPhap = false;
+            des();
         }
 
-        private bool check(string khoa, string str)
+        private void des()
         {
-            if(khoa.Length == 16)
+            tinhDes = new TinhDES();
+
+            if(check) // true là file
             {
-                for(int i = 0; i < khoa.Length; i++)
+                khoaK = new Khoa(txtKhoaFile.Text);
+                if(phuongPhap) // true là mã hóa
                 {
-                    if (!((int)khoa[i] >= 48 && (int)khoa[i] <= 57) && !((int)khoa[i] >= 65 && (int)khoa[i] <= 70))
-                    {
-                        MessageBox.Show($"Khóa {str} phải có dạng HEX(16).");
-                        return false;
-                    }
+                    MaNhiPhan file = docFile(txtDuongDanFile.Text);
+                    MaNhiPhan noiDungFile = TinhDES.ThucHienDES(khoaK, file, true);
+                    ghifile(txtDuongDanFile.Text.Replace(".", "_new."), noiDungFile);
+                    lbDem.Text = "Hoàn thành";
+                    MessageBox.Show("Mã hóa thành công!", "Thông báo");
                 }
-                return true;
-            } else
+                else // false là giải mã.
+                {
+                    MaNhiPhan file = docFile(txtDuongDanFile.Text);
+                    MaNhiPhan noiDungFile = TinhDES.ThucHienDES(khoaK, file, false);
+                    if (noiDungFile == null)
+                    {
+                        MessageBox.Show("Lỗi! Nội dung file là null", "Thông báo");
+                        return;
+                    }
+                    ghifile(txtDuongDanFile.Text.Replace(".", "_new."), noiDungFile);
+                    lbDem.Text = "Hoàn thành";
+                    MessageBox.Show("Giải mã thành công!", "Thông báo");
+                }
+            } else // false là văn bản
             {
-                MessageBox.Show($"Khóa {str} phải có dạng HEX(16).");
-                return false;
+                khoaK = new Khoa(txtKhoaVanBan.Text);
+                if (phuongPhap) // true là mã hóa
+                {
+                    txtNoiDungVanBanSau.Text = TinhDES.ThucHienDESChuoi(khoaK, txtNoiDungVanBanTruoc.Text, true);
+                    MessageBox.Show("Mã hóa thành công!", "Thông báo");
+                }
+                else // false là giải mã.
+                {
+                    txtNoiDungVanBanSau.Text = TinhDES.ThucHienDESChuoi(khoaK, txtNoiDungVanBanTruoc.Text, false);
+                    MessageBox.Show("Giải mã thành công!", "Thông báo");
+                }
             }
+        }
+
+        private void btnChonFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDuongDanFile.Clear();
+                txtDuongDanFile.Enabled = false;
+                OpenFileDialog open = new OpenFileDialog();
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    txtDuongDanFile.Text = open.FileName;
+                    Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+                    Document document = app.Documents.Open(open.FileName);
+
+                    txtNoiDungFile.Text = document.Content.Text;
+                    app.Quit();
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("File đã bị hỏng do mã hóa có thể vẫn giải mã được.", "Thông báo");
+            }
+
+        }
+
+        public void ghifile(string fileName, MaNhiPhan noiDung)
+        {
+            byte[] bytes = new byte[noiDung.MangMaNhiPhan.Length / 8];
+            for (int i = 0; i < noiDung.MangMaNhiPhan.Length / 8; i++)
+            {
+                bytes[i] = (byte)MaNhiPhan.ChuyenMangSangByte(noiDung.MangMaNhiPhan, i * 8, i * 8 + 8);
+            }
+            File.WriteAllBytes(fileName, bytes);
+
+        }
+
+        public MaNhiPhan docFile(string fileName)
+        {
+            if(fileName != "")
+            {
+                int doDai = 8;
+                MaNhiPhan chuoi;
+                MaNhiPhan ketQua = new MaNhiPhan(0);
+                byte[] fileBytes = File.ReadAllBytes(fileName);
+                foreach (byte items in fileBytes)
+                {
+                    chuoi = MaNhiPhan.ChuyenSoSangMangNhiPhan(items, doDai);
+                    ketQua = ketQua.Cong(chuoi);
+                }
+                return ketQua;
+            }
+
+            return null;
+
         }
     }
 }

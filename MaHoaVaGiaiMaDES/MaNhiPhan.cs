@@ -83,9 +83,9 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 
         public MaNhiPhan Cat()
         {
-            MaNhiPhan Chuoi = this.Cat(DoDaiMangMaNhiPhan() - 64, 64);
-            long so = MaNhiPhan.ChuyenNhiPhanSangSo(Chuoi);
-            MaNhiPhan ketQua = this.Cat(0, DoDaiMangMaNhiPhan() - 64); 
+            MaNhiPhan Chuoi = Cat(DoDaiMangMaNhiPhan() - 64, 64);
+            long so = ChuyenNhiPhanSangSo(Chuoi);
+            MaNhiPhan ketQua = Cat(0, DoDaiMangMaNhiPhan() - 64); 
             if (so < 0 || so > ketQua.DoDaiMangMaNhiPhan())
                 return null;
             ketQua = ketQua.Cat(0, so);

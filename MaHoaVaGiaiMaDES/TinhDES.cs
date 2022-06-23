@@ -9,14 +9,13 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 {
     public class TinhDES
     {
-        private Khoa KhoaDES;
+        private static Khoa KhoaDES { get; set; }
 
-        public Khoa KhoaDES1 { get => KhoaDES; set => KhoaDES = value; }
 
-        public MaNhiPhan ThucHienDES(Khoa khoa, MaNhiPhan Chuoi, int check)
+        public static MaNhiPhan ThucHienDES(Khoa khoa, MaNhiPhan Chuoi, bool check)
         {
-            this.KhoaDES = khoa;
-            if (check == 1)
+            KhoaDES = khoa;
+            if (check == true)
                 Chuoi = Chuoi.ChinhDoDai();
 
             KhoaDES.SinhKhoaCon();
@@ -34,7 +33,7 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 
                 for (int i = 0; i < 16; i++)
                 {
-                    F = HamF(R, KhoaDES.DayKhoaPhu[check == 1 ? i : 15 - i]);
+                    F = HamF(R, KhoaDES.DayKhoaPhu[check == true ? i : 15 - i]);
                     L = L.XOR(F);
                     TG = L;
                     L = R;
@@ -44,15 +43,15 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
 
                 ChuoiKetQua = ChuoiKetQua.Cong(SauIP_1);
             }
-            if (check == -1)
+            if (check == false)
                 ChuoiKetQua = ChuoiKetQua.Cat();
             return ChuoiKetQua;
         }
 
-        public string ThucHienDESChuoi(Khoa key, string Chuoi, int check)
+        public static string ThucHienDESChuoi(Khoa key, string Chuoi, bool check)
         {
             MaNhiPhan chuoi;
-            if (check == 1)
+            if (check == true)
             {
                 chuoi = MaNhiPhan.ChuyenChuSangNhiPhan(Chuoi);
             }
@@ -61,7 +60,7 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
                 chuoi = MaNhiPhan.ChuyenChuSangChuoiNhiPhan(Chuoi);
             }
             MaNhiPhan ketQua = ThucHienDES(key, chuoi, check);
-            if (check == 1)
+            if (check == true)
             {
                 return ketQua.VanBan;
             }
@@ -73,7 +72,7 @@ namespace MaHoaDES.MaHoaVaGiaiMaDES
             return MaNhiPhan.ChuyenNhiPhanSangChu(ketQua);
         }
 
-        private MaNhiPhan HamF(MaNhiPhan chuoi, MaNhiPhan Khoa)
+        private static MaNhiPhan HamF(MaNhiPhan chuoi, MaNhiPhan Khoa)
         {
             MaNhiPhan ketQua = CacChuanDES.TinhE(chuoi);
             ketQua = ketQua.XOR(Khoa); 
