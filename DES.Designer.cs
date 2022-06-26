@@ -63,6 +63,9 @@
             this.txtNoiDungVanBanTruoc = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbNoiDungFileSau = new System.Windows.Forms.Label();
+            this.txtNoiDungFileSau = new System.Windows.Forms.RichTextBox();
+            this.lbDem = new System.Windows.Forms.Label();
             this.btnGiaiMaFile = new System.Windows.Forms.Button();
             this.btnMaHoaFile = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -70,10 +73,9 @@
             this.txtNoiDungFile = new System.Windows.Forms.RichTextBox();
             this.btnChonFile = new System.Windows.Forms.Button();
             this.txtDuongDanFile = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lbNoiDungfile = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.lbDem = new System.Windows.Forms.Label();
             this.Ma.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -429,6 +431,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.lbNoiDungFileSau);
+            this.groupBox3.Controls.Add(this.txtNoiDungFileSau);
             this.groupBox3.Controls.Add(this.lbDem);
             this.groupBox3.Controls.Add(this.btnGiaiMaFile);
             this.groupBox3.Controls.Add(this.btnMaHoaFile);
@@ -437,7 +441,7 @@
             this.groupBox3.Controls.Add(this.txtNoiDungFile);
             this.groupBox3.Controls.Add(this.btnChonFile);
             this.groupBox3.Controls.Add(this.txtDuongDanFile);
-            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.lbNoiDungfile);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox3.Location = new System.Drawing.Point(3, 40);
@@ -446,6 +450,34 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "File";
+            // 
+            // lbNoiDungFileSau
+            // 
+            this.lbNoiDungFileSau.AutoSize = true;
+            this.lbNoiDungFileSau.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbNoiDungFileSau.Location = new System.Drawing.Point(7, 312);
+            this.lbNoiDungFileSau.Name = "lbNoiDungFileSau";
+            this.lbNoiDungFileSau.Size = new System.Drawing.Size(284, 16);
+            this.lbNoiDungFileSau.TabIndex = 11;
+            this.lbNoiDungFileSau.Text = "Nội dung File sau khi mã hóa hoặc giải mã:";
+            // 
+            // txtNoiDungFileSau
+            // 
+            this.txtNoiDungFileSau.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtNoiDungFileSau.Location = new System.Drawing.Point(10, 331);
+            this.txtNoiDungFileSau.Name = "txtNoiDungFileSau";
+            this.txtNoiDungFileSau.Size = new System.Drawing.Size(417, 96);
+            this.txtNoiDungFileSau.TabIndex = 10;
+            this.txtNoiDungFileSau.Text = "";
+            // 
+            // lbDem
+            // 
+            this.lbDem.AutoSize = true;
+            this.lbDem.ForeColor = System.Drawing.Color.Red;
+            this.lbDem.Location = new System.Drawing.Point(7, 284);
+            this.lbDem.Name = "lbDem";
+            this.lbDem.Size = new System.Drawing.Size(0, 16);
+            this.lbDem.TabIndex = 9;
             // 
             // btnGiaiMaFile
             // 
@@ -513,15 +545,15 @@
             this.txtDuongDanFile.Size = new System.Drawing.Size(243, 22);
             this.txtDuongDanFile.TabIndex = 2;
             // 
-            // label8
+            // lbNoiDungfile
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.Location = new System.Drawing.Point(7, 59);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 16);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Nội dung File:";
+            this.lbNoiDungfile.AutoSize = true;
+            this.lbNoiDungfile.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbNoiDungfile.Location = new System.Drawing.Point(7, 59);
+            this.lbNoiDungfile.Name = "lbNoiDungfile";
+            this.lbNoiDungfile.Size = new System.Drawing.Size(96, 16);
+            this.lbNoiDungfile.TabIndex = 1;
+            this.lbNoiDungfile.Text = "Nội dung File:";
             // 
             // label7
             // 
@@ -542,15 +574,6 @@
             this.label6.Size = new System.Drawing.Size(123, 22);
             this.label6.TabIndex = 0;
             this.label6.Text = "Mã hóa DES";
-            // 
-            // lbDem
-            // 
-            this.lbDem.AutoSize = true;
-            this.lbDem.ForeColor = System.Drawing.Color.Red;
-            this.lbDem.Location = new System.Drawing.Point(7, 315);
-            this.lbDem.Name = "lbDem";
-            this.lbDem.Size = new System.Drawing.Size(0, 16);
-            this.lbDem.TabIndex = 9;
             // 
             // DES
             // 
@@ -610,7 +633,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnChonFile;
         private System.Windows.Forms.TextBox txtDuongDanFile;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbNoiDungfile;
         private System.Windows.Forms.RichTextBox txtNoiDungFile;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtKhoaFile;
@@ -626,6 +649,8 @@
         private System.Windows.Forms.Button btnGiaiMaFile;
         private System.Windows.Forms.Button btnMaHoaFile;
         private System.Windows.Forms.Label lbDem;
+        private System.Windows.Forms.RichTextBox txtNoiDungFileSau;
+        private System.Windows.Forms.Label lbNoiDungFileSau;
     }
 }
 

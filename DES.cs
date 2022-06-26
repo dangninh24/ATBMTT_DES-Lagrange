@@ -70,7 +70,7 @@ namespace MaHoaDES
 
                     k = k + (float)listTV[i].Pi * tich;
                 }
-                lbThongBao.Text = $"Khóa bí mật là {k}";
+                lbThongBao.Text = $"Khóa bí mật là {(int)k}";
             }
 
         }
@@ -232,6 +232,8 @@ namespace MaHoaDES
             check = true;
             phuongPhap = true;
             des();
+            hienThiNoiDung();
+            lbNoiDungFileSau.Text = "Nội dung File sau khi mã hóa hoặc giải mã: (Đã có)";
         }
 
         private void btnGiaiMaFile_Click(object sender, EventArgs e)
@@ -239,6 +241,8 @@ namespace MaHoaDES
             check = true;
             phuongPhap = false;
             des();
+            hienThiNoiDung();
+            lbNoiDungFileSau.Text = "Nội dung File sau khi mã hóa hoặc giải mã: (Đã có)";
         }
 
         private void des()
@@ -289,6 +293,10 @@ namespace MaHoaDES
         {
             try
             {
+                lbNoiDungFileSau.Text = "Nội dung File sau khi mã hóa hoặc giải mã: (Trống)";
+                lbNoiDungfile.Text = "Nội dung File: (Trống)";
+                txtNoiDungFile.Text = "";
+                txtNoiDungFileSau.Text = "";
                 txtDuongDanFile.Clear();
                 txtDuongDanFile.Enabled = false;
                 OpenFileDialog open = new OpenFileDialog();
@@ -301,10 +309,11 @@ namespace MaHoaDES
                     txtNoiDungFile.Text = document.Content.Text;
                     app.Quit();
                 }
+                lbNoiDungfile.Text = "Nội dung File: (Đã có)";
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                MessageBox.Show("File đã bị hỏng do mã hóa có thể vẫn giải mã được.", "Thông báo");
+                MessageBox.Show("File đã bị hỏng có thể vẫn mã hóa và giải mã được.", "Thông báo");
             }
 
         }
@@ -338,6 +347,22 @@ namespace MaHoaDES
 
             return null;
 
+        }
+
+        public void hienThiNoiDung()
+        {
+            try
+            {
+                Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+                Document document = app.Documents.Open(txtDuongDanFile.Text.Replace(".", "_new."));
+
+                txtNoiDungFileSau.Text = document.Content.Text;
+                app.Quit();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File đã bị hỏng có thể vẫn giải mã được.");
+            }
         }
     }
 }
